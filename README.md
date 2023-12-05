@@ -35,7 +35,7 @@ pip install -r requirements.txt
 
 Run the script from the command line, providing the necessary arguments:
 ```
-python filename_date_to_metadata.py -d /path/to/images [-r] [--override]
+python WhatsAppExifUpdater.py -d /path/to/images [-r] [--override]
 ```
 
 - `-d`, `--directory` (required): Specify the directory of images.
@@ -47,13 +47,13 @@ python filename_date_to_metadata.py -d /path/to/images [-r] [--override]
 Updating images in a specific directory:
 
 ```
-python filename_date_to_metadata.py -d ./my_images
+python WhatsAppExifUpdater.py -d ./my_images
 ```
 
 Updating images recursively in a directory and its subdirectories:
 
 ```
-python filename_date_to_metadata.py -d ./my_images -r
+python WhatsAppExifUpdater.py -d ./my_images -r
 ```
 
 ## Contributing

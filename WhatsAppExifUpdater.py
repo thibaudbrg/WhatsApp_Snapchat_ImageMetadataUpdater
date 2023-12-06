@@ -123,7 +123,7 @@ def process_directory(directory, override, recursive):
 
     for root, dirs, files in os.walk(directory):
         for filename in files:
-            if filename.endswith(".jpg"):
+            if filename.endswith((".jpg", ".jpeg", ".png", ".heic")):
                 total_images += 1
                 if is_whatsapp_image(filename):
                     whatsapp_images += 1

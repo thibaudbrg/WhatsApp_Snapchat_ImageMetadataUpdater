@@ -1,67 +1,52 @@
-# WhatsAppImageMetadataUpdater
+# WhatsApp & Snapchat Image Metadata Updater
+## Overview
 
-WhatsAppImageMetadataUpdater is a Python script designed to update the EXIF metadata of images following the WhatsApp naming convention (e.g., `IMG-YYYYMMDD-WA####.jpg`). It includes features for creating backups of images, performing integrity checks, and handling images both in a specific directory and recursively in subdirectories.
+The WhatsApp & Snapchat Image Metadata Updater is a Python utility designed to update the metadata of images and videos received from WhatsApp and Snapchat. This tool is particularly useful for organizing your media files by correcting or adding the original creation date in the metadata, which might have been stripped or altered during the transfer process.
+## Features 
+- **Metadata Updating:**  Updates the creation date metadata of WhatsApp and Snapchat images/videos. 
+- **Backup Creation:**  Offers an option to create a backup of the original files before modifying them. 
+- **Recursive Processing:**  Can process files in the specified directory and optionally in its subdirectories. 
+- **Cross-Platform Compatibility:**  Works on Windows, Linux, and macOS.
+## Prerequisites
 
-## Features
+Before you begin, ensure you have the following installed on your system:
+- Python 3.6 or later
+- Pip (Python package manager)
+## Installation 
+1. Clone this repository to your local machine or download the ZIP file.
 
-- Update EXIF metadata (date) in WhatsApp images based on filenames.
-- Create backups of original images before modification.
-- Perform integrity checks (checksum and file size) post-backup.
-- Process images in a specified directory or recursively in subdirectories.
-- Handle images on different operating systems (Windows, Linux/WSL, macOS).
+```bash
+git clone https://github.com/thibaudbrg/WhatsApp_Snapchat_ImageMetadataUpdater.git
+``` 
+2. Navigate to the project directory.
 
-## Requirements
+```bash
+cd WhatsApp_SnapChat_ImageMetadataUpdater
+``` 
+3. Install the required Python packages.
 
-- Python 3
-- Pillow (Python Imaging Library Fork)
-- tqdm (for progress bar visualization)
-
-## Installation
-
-1. Clone the repository:
-```
-git clone https://github.com/yourusername/WhatsAppImageMetadataUpdater.git
-```
-2. Navigate to the cloned directory:
-```
-cd WhatsAppImageMetadataUpdater
-```
-3. Install the required packages:
-```
+```Copy code
 pip install -r requirements.txt
 ```
-
 ## Usage
 
-Run the script from the command line, providing the necessary arguments:
+To use the WhatsApp & Snapchat Image Metadata Updater, follow these steps:
+1. Open your terminal or command prompt.
+2. Navigate to the project directory. 
+3. Run the script with the following command:
+
+```Copy code
+python WA_SnapExifUpdater.py
 ```
-python WhatsAppExifUpdater.py -d /path/to/images [-r] [--override]
-```
-
-- `-d`, `--directory` (required): Specify the directory of images.
-- `-r`, `--recursive`: Process images in subdirectories recursively.
-- `--override`: Override original images without creating a backup.
-
-### Example
-
-Updating images in a specific directory:
-
-```
-python WhatsAppExifUpdater.py -d ./my_images
-```
-
-Updating images recursively in a directory and its subdirectories:
-
-```
-python WhatsAppExifUpdater.py -d ./my_images -r
-```
-
+4. Follow the on-screen prompts to select the operation mode (WhatsApp or Snapchat), specify the directory of images/videos to process, and other options as prompted.
+### Options 
+- **Mode Selection:**  Choose whether to process WhatsApp images or Snapchat files. 
+- **Directory Selection:**  Specify the path to the directory containing the media files to be processed. 
+- **Backup Creation:**  Decide whether to create a backup of the original files before making changes. 
+- **Recursive Processing:**  Choose whether to recursively process files in subdirectories.
 ## Contributing
 
-Contributions to improve the script or add new features are welcome. Please feel free to submit issues and pull requests.
-
+Contributions to the WhatsApp & Snapchat Image Metadata Updater are welcome! If you have a feature request, bug report, or a pull request, please feel free to contribute.
 ## License
 
-[MIT License]
-
-
+This project is licensed under the MIT License 

@@ -21,6 +21,7 @@ logger = logging.getLogger()
 # Regex patterns for file identification
 WHATSAPP_IMAGE_PATTERN = r"^IMG-\d{8}-WA\d{4}\.jpg$"
 SNAPCHAT_FILE_PATTERN = r"^Snapchat-\d+\.(jpg|mp4)$"
+INSTAGRAM_FILE_PATTERN = r"^IMG_\d{8}_\d{6}_\d{3}\.(jpg|jpeg|png|webp)$"
 
 
 def is_whatsapp_image(filename):
@@ -29,6 +30,10 @@ def is_whatsapp_image(filename):
 
 def is_snapchat_file(filename):
     return re.match(SNAPCHAT_FILE_PATTERN, filename) is not None
+
+
+def is_instagram_file(filename):
+    return re.match(INSTAGRAM_FILE_PATTERN, filename) is not None
 
 
 def extract_date_from_whatsapp_filename(filename):
@@ -187,6 +192,7 @@ def process_directory(directory, override, recursive, mode, snapchat_date=None):
     total_files = 0
     whatsapp_images = 0
     snapchat_files = 0
+    instagram_files = 0  # Nouveau compteur pour Instagram
     metadata_exists = 0
     metadata_updated = 0
     update_failed = 0
@@ -219,15 +225,26 @@ def process_directory(directory, override, recursive, mode, snapchat_date=None):
                 elif result == 'failed':
                     update_failed += 1
 
+            # Traitement des fichiers Instagram
+            elif mode == "instagram" and is_instagram_file(filename):
+                instagram_files += 1
+                result = update_image_metadata(file_path)
+                if result == 'exists':
+                    metadata_exists += 1
+                elif result == 'updated':
+                    metadata_updated += 1
+                elif result == 'failed':
+                    update_failed += 1
+
         if not recursive:
             break
 
-    return total_files, (whatsapp_images if mode == "whatsapp" else snapchat_files), metadata_exists, metadata_updated, update_failed
+    return total_files, (whatsapp_images if mode == "whatsapp" else snapchat_files if mode == "snapchat" else instagram_files), metadata_exists, metadata_updated, update_failed
 
 
 def main():
     logger.info(Fore.CYAN + "Welcome to the Image Metadata Updater!")
-    mode = prompt_for_input("Select mode (whatsapp/snapchat): ", ["whatsapp", "snapchat"])
+    mode = prompt_for_input("Select mode (whatsapp/snapchat/instagram): ", ["whatsapp", "snapchat", "instagram"])
     directory = prompt_for_input("Enter the directory of images/videos: ")
 
     # Check if the directory exists
@@ -258,6 +275,8 @@ def main():
         logger.info(Fore.GREEN + f"WhatsApp images processed: {processed_files}")
     elif mode == "snapchat":
         logger.info(Fore.GREEN + f"Snapchat files processed: {processed_files}")
+    elif mode == "instagram":
+        logger.info(Fore.GREEN + f"Instagram files processed: {processed_files}")
 
     logger.info(Fore.GREEN + f"Files with existing metadata: {metadata_exists}")
     logger.info(Fore.GREEN + f"Files whose metadata was updated: {metadata_updated}")

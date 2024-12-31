@@ -28,14 +28,14 @@ Before you begin, ensure you have the following installed on your system:
 
 
 ```bash
-git clone https://github.com/thibaudbrg/WhatsApp_Snapchat_ImageMetadataUpdater.git
+git clone https://github.com/thibaudbrg/WhatsApp_Snapchat_Instagram_ImageMetadataUpdater.git
 ```
  
 2. Navigate to the project directory:
 
 
 ```bash
-cd WhatsApp_Snapchat_ImageMetadataUpdater
+cd WhatsApp_Snapchat_Instagram_ImageMetadataUpdater
 ```
  
 3. Install the required Python packages:
